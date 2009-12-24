@@ -46,7 +46,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 </td>
 <td>
 <div id="serverdomain">{{ server.serverdomain }}</div>
-<div id="serverport">{% if server.ssl %}:443{% else %}:80{% endif %}</div>
+<div id="serverport">{% if server.ssl %}:443{% else %}{% if server.serverport %}:{{ server.serverport }}{% else %}:80{% endif %}{% endif %}</div>
+<!--<div id="serverport">{% if server.ssl %}:443{% else %}:80{% endif %}</div>-->
 <br/>
 HTTP Status code:<div id="responsecode">{{ server.responsecode }}</div><!---responsecode--->
 </td>

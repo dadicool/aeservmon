@@ -67,6 +67,13 @@ class StoreServer(webapp.RequestHandler):
 			server.ssl = True
 		else:
 			server.ssl = False
+		if self.request.get('serverport') != None:
+			server.serverport = self.request.get('serverport')
+		else:
+			if server.ssl:
+				server.serverport = str(':443')
+			else:          
+				server.serverport = str(':80"')
 		if self.request.get('notifywithprowl') == "True":
 			server.notifywithprowl = True
 		if self.request.get('notifywithemail') == "True":

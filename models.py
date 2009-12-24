@@ -29,6 +29,7 @@ from google.appengine.ext import db
 
 class Server(db.Model):
     serverdomain = db.StringProperty("Server Domain", multiline=False)
+    serverport = db.StringProperty("Server Port", multiline=False)
     ssl = db.BooleanProperty("Is server SSL?", default=False)
     email = db.EmailProperty("Email Address for notification")
     startedmonitoring = db.DateTimeProperty("Date monitoring started", auto_now_add=True)

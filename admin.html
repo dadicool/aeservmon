@@ -49,10 +49,11 @@ Admin Panel
 <h3>Servers:</h3>
 <div id="adminserverlist">
 <table>
-<tr><td>Domain</td><td>SSL</td><td>Code</td><td>Uptime</td><td>Prowl</td><td>Email</td></tr>
+<tr><td>Domain</td><td>Port</td><td>SSL</td><td>Code</td><td>Uptime</td><td>Prowl</td><td>Email</td></tr>
 {% for server in serverlist %}
 <tr>
 <td>{{ server.serverdomain }}</td>
+<td>{{ server.serverport }}</td>
 <td>{% if server.ssl %}Yes{% else %}No{% endif %}</td>
 <td>{{ server.responsecode }}</td>
 <td>{{ server.uptime }}</td>
@@ -74,6 +75,7 @@ Add more servers:
 <div id="form">
 <form action="/admin/storeserver" method="post">
 <div id="entry">Server Domain: <textarea name="serverdomain" rows="1" cols="35"></textarea></div>
+<div id="entry">Server Service Port: <textarea name="serverport" rows="1" cols="35"></textarea></div>
 <div id="entry">SSL? <select name="ssl">
 <option value="False" />No</option>
 <option value="True" />Yes</option>

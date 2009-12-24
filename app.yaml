@@ -1,4 +1,4 @@
-application: aeservmon
+application: cloud-broker
 version: 1
 runtime: python
 api_version: 1
