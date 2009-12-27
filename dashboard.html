@@ -46,15 +46,30 @@ Logged in as:<br/>
 Admin Panel
 {% endblock %}
 {% block pagearea %}
+
+<h3>us-east-1 m1.small linux</h3>
 <script type="text/javascript" src="amstock/swfobject.js"></script>
 <!--<div id="amcharts_1261652926144">You need to upgrade your Flash Player</div>-->
-<div id="amcharts">You need to upgrade your Flash Player</div>
+<div id="us-east_small_linux">You need to upgrade your Flash Player</div>
 <script type="text/javascript">
       	var so = new SWFObject("/amstock/amstock.swf", "amstock", "620", "400", "8", "#FFFFFF");
       	so.addVariable("path", "/data/");
       	so.addVariable("settings_file", encodeURIComponent("/amstock/settings.xml"));
       	so.addVariable("preloader_color", "#999999");
-      	so.addVariable("additional_chart_settings", "<settings><data_sets><data_set did='0'><file_name>us-east-1.linux.m1.small.csv</file_name></data_set></data_sets></settings>");
-      	so.write("amcharts");
+      	so.addVariable("additional_chart_settings", "{{ input_data_setting }}");
+      	so.write("us-east_small_linux");
       </script>
+<h3>us-west-1 m1.small linux</h3>
+<script type="text/javascript" src="amstock/swfobject.js"></script>
+<!--<div id="amcharts_1261652926144">You need to upgrade your Flash Player</div>-->
+<div id="us-west_small_linux">You need to upgrade your Flash Player</div>
+<script type="text/javascript">
+      	var so = new SWFObject("/amstock/amstock.swf", "amstock", "620", "400", "8", "#FFFFFF");
+      	so.addVariable("path", "/data/");
+      	so.addVariable("settings_file", encodeURIComponent("/amstock/settings.xml"));
+      	so.addVariable("preloader_color", "#999999");
+      	so.addVariable("additional_chart_settings","{{ input_data_setting }}");
+      	so.write("us-west_small_linux");
+      </script>
+<!--      	so.addVariable("additional_chart_settings", "<settings><data_sets><data_set did='0'><file_name>us-west-1.linux.m1.small.csv</file_name></data_set></data_sets></settings>");-->
 {% endblock %}

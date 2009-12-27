@@ -43,22 +43,35 @@ import datetime
 import logging
 from libcloud.types import Provider
 from libcloud.providers import get_driver
+from google.appengine.api import urlfetch
+#from urllib import urlretrieve
 
+instances = ['us-east-1.linux.m1.small', 'us-west-1.linux.m1.small']
 
 class Dashboard(webapp.RequestHandler):
 	def get(self):
-		adminoptions = AdminOptions.get_by_key_name('credentials')
-		if adminoptions:  
-			twitterpass = adminoptions.twitterpass
-			twitteruser = adminoptions.twitteruser
-			prowlkey = adminoptions.prowlkey
-		else:
-			twitterpass = "Change Me"
-			twitteruser = "Change Me"
-			prowlkey = "Change Me"
-		serverlist = db.GqlQuery("SELECT * FROM Server")
-		user = users.get_current_user()
-		template_values = {'user': user, 'twitteruser': twitteruser, 'twitterpass': twitterpass, 'serverlist': serverlist, 'prowlkey': prowlkey, 'adminoptions': adminoptions,}
+#		adminoptions = AdminOptions.get_by_key_name('credentials')
+#		if adminoptions:  
+#			twitterpass = adminoptions.twitterpass
+#			twitteruser = adminoptions.twitteruser
+#			prowlkey = adminoptions.prowlkey
+#		else:
+#			twitterpass = "Change Me"
+#			twitteruser = "Change Me"
+#			prowlkey = "Change Me"
+#		serverlist = db.GqlQuery("SELECT * FROM Server")
+#		user = users.get_current_user()
+		for instance in instances:
+			url = "http://www.cloudexchange.org/data/"+instance+".csv"
+			result = urlfetch.fetch(url)
+			if result.status_code == 201:
+				input_data_setting = '''<settings><data_sets><data_set did='0'><csv><data>"+result.content+"</data></csv></data_set></data_sets></settings>'''
+				logging.info("input_data_settings: %s" % input_data_setting)
+			else:
+				input_data_setting = '''<settings><data_sets><data_set did='0'><csv><data>2009-11-30 21:21:21,0.029\\\n 2009-12-01 05:12:36,0.029\\\n2009-12-01 05:12:37,0.03</data></csv></data_set></data_sets></settings>'''
+				logging.info("input_data_settings: %s" % input_data_setting)
+		
+		template_values = {'input_data_setting': input_data_setting}
 		path = os.path.join(os.path.dirname(__file__), 'dashboard.html')
 		self.response.out.write(template.render(path, template_values))
         
