@@ -11,6 +11,15 @@ handlers:
 - url: /files
   static_dir: files
 
+- url: /data
+  static_dir: data
+
+- url: /ampie
+  static_dir: ampie
+
+- url: /amstock
+  static_dir: amstock
+
 - url: /maintenance
   script: maintenance.py
   login: admin  
@@ -27,6 +36,10 @@ handlers:
   script: admin.py
   login: admin
   
+- url: /admin/storeec2account
+  script: admin.py
+  login: admin
+  
 - url: /admin/deleteserver
   script: admin.py
   login: admin
@@ -35,9 +48,9 @@ handlers:
   script: admin.py
   login: admin
 
+- url: /dashboard 
+  script: dashboard.py
+
 - url: .*
   script: frontpage.py
-
-
-
 

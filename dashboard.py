@@ -45,7 +45,7 @@ from libcloud.types import Provider
 from libcloud.providers import get_driver
 
 
-class Admin(webapp.RequestHandler):
+class Dashboard(webapp.RequestHandler):
 	def get(self):
 		adminoptions = AdminOptions.get_by_key_name('credentials')
 		if adminoptions:  
@@ -59,7 +59,7 @@ class Admin(webapp.RequestHandler):
 		serverlist = db.GqlQuery("SELECT * FROM Server")
 		user = users.get_current_user()
 		template_values = {'user': user, 'twitteruser': twitteruser, 'twitterpass': twitterpass, 'serverlist': serverlist, 'prowlkey': prowlkey, 'adminoptions': adminoptions,}
-		path = os.path.join(os.path.dirname(__file__), 'admin.html')
+		path = os.path.join(os.path.dirname(__file__), 'dashboard.html')
 		self.response.out.write(template.render(path, template_values))
         
 class StoreServer(webapp.RequestHandler):
@@ -129,7 +129,7 @@ class StoreAdminOptions(webapp.RequestHandler):
         
         
 def main():
-	application = webapp.WSGIApplication([('/admin/storeserver', StoreServer),('/admin/storeec2account', StoreEC2Account),('/admin/deleteserver', DeleteServer),('/admin/storeadminoptions', StoreAdminOptions),('/admin', Admin)],debug=True)
+	application = webapp.WSGIApplication([('/dashboard', Dashboard)],debug=True)
 	wsgiref.handlers.CGIHandler().run(application)
 
 

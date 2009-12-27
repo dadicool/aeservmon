@@ -1,4 +1,4 @@
-{% comment %}
+{% comment % }}
 Copyright (c) 2009, Steve Oliver (steve@xercestech.com)
 All rights reserved.
 
@@ -25,29 +25,36 @@ ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 {% endcomment %}
 
-<html><head><meta http-equiv="content-type" content="text/html; charset=UTF-8">
-<title>Cloud Broker Engine</title>
-<link rel="stylesheet" href="/files/style.css" type="text/css" media="screen" /></head>
-<body style="margin: 0; padding:0;">
-<div id="header">{% block header %}{% endblock %}</div><!---header--->
-<div id="wrapper">
-<div id="controlpanel">
+{% extends 'core.html' %}
+
+{% block controlpanel %}
 <img style="display:inline;" src="/images/server.png"></img>
 <h1>Cloud Broker Monitor</h1>
-<div id="linklist">
-<ul>
-<li><a href="/">Home</a></li>
-<li><a href="/admin">Admin</a></li>
-<li><a href="/dashboard">EC2 Dashboard</a></li>
-</div><!---linklist--->
 <div id="userdisplay">
 Logged in as:<br/>
 {{ user }}
 </div><!---userdisplay--->
-</div><!---controlpanel--->
-<div id="mainpanel">
-<div id="breadcrumbs">{% block breadcrumbs %}{% endblock %}<!---breadcrumbs---></div>
-<div id="pagearea">{% block pagearea %}{% endblock %}<!---pagearea---></div>
-</div><!---main panel--->
-</div><!---wrapper--->
-</body></html>
+<div id="linklist">
+<ul>
+<li><a href="/">Home</a></li>
+<li><a href="/admin">Admin</a></li>
+<li><a href="/admin/addserver">Add Servers</a></li>
+</div><!---linklist--->
+{% endblock %}
+
+{% block breadcrumbs %}
+Admin Panel
+{% endblock %}
+{% block pagearea %}
+<script type="text/javascript" src="amstock/swfobject.js"></script>
+<!--<div id="amcharts_1261652926144">You need to upgrade your Flash Player</div>-->
+<div id="amcharts">You need to upgrade your Flash Player</div>
+<script type="text/javascript">
+      	var so = new SWFObject("/amstock/amstock.swf", "amstock", "620", "400", "8", "#FFFFFF");
+      	so.addVariable("path", "/data/");
+      	so.addVariable("settings_file", encodeURIComponent("/amstock/settings.xml"));
+      	so.addVariable("preloader_color", "#999999");
+      	so.addVariable("additional_chart_settings", "<settings><data_sets><data_set did='0'><file_name>us-east-1.linux.m1.small.csv</file_name></data_set></data_sets></settings>");
+      	so.write("amcharts");
+      </script>
+{% endblock %}

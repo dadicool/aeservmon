@@ -22,8 +22,7 @@ from copy import copy
 # JSON is included in the standard library starting with Python 2.6.  For 2.5
 # and 2.4, there's a simplejson egg at: http://pypi.python.org/pypi/simplejson
 try: import json
-except: import simplejson as json
-
+except: from django.utils import simplejson as json
 
 # Base exception for problems arising from this driver
 class LinodeException(BaseException):

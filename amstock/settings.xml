@@ -1,0 +1,534 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings>
+ <margins>0</margins>
+ <font>Helvetica</font>
+ <text_size>14</text_size>
+ <text_color></text_color>
+ <redraw></redraw>
+ <add_time_stamp></add_time_stamp>
+
+ <max_series>0</max_series>
+ <max_grid_count>10</max_grid_count>
+ <equal_spacing>false</equal_spacing>
+ <start_on_axis></start_on_axis>
+ <js_enabled>false</js_enabled>
+ <interactive>true</interactive>
+
+ <legend_position></legend_position>
+ <legend_width></legend_width>
+ <data_reloading>
+  <interval></interval>
+  <show_preloader></show_preloader>
+  <reset_period></reset_period>
+ </data_reloading>
+ <number_format>
+  <decimal_separator>.</decimal_separator>
+
+  <thousand_separator></thousand_separator>
+  <digits_after_decimal>
+   <percents></percents>
+   <data>3</data>
+   <averages></averages>
+  </digits_after_decimal>
+  <letters>
+   <letter number="1000">K</letter>
+
+   <letter number="1000000">M</letter>
+   <letter number="1000000000">B</letter>
+  </letters>
+  <scientific_min></scientific_min>
+  <scientific_max></scientific_max>
+ </number_format>
+ <data_sets>
+  <data_set did="0">
+
+   <title></title>
+   <short></short>
+   <color></color>
+   <description><![CDATA[]]></description>
+   <file_name></file_name>
+   <events_file_name></events_file_name>
+   <main_drop_down selected="true"></main_drop_down>
+   <compare_list_box selected="false"></compare_list_box>
+   <csv>
+
+    <reverse>false</reverse>
+    <separator>,</separator>
+    <skip_first_rows></skip_first_rows>
+    <strip_symbols></strip_symbols>
+    <skip_last_rows></skip_last_rows>
+    <show_last_rows></show_last_rows>
+    <date_format>YYYY-MM-DD hh:mm:ss</date_format>
+
+    <decimal_separator>.</decimal_separator>
+    <columns>
+     <column>date</column>
+     <column>close</column>
+    </columns>
+    <data></data>
+   </csv>
+
+   <events></events>
+  </data_set>
+ </data_sets>
+ <charts>
+  <chart cid="0">
+   <height>60</height>
+   <title>spot price</title>
+   <bg_color></bg_color>
+
+   <bg_alpha></bg_alpha>
+   <border_color>#CCCCCC</border_color>
+   <border_alpha>100</border_alpha>
+   <grid>
+    <x>
+     <enabled></enabled>
+     <color></color>
+     <alpha></alpha>
+
+     <dashed></dashed>
+     <dash_length></dash_length>
+    </x>
+    <y_left>
+     <enabled></enabled>
+     <color></color>
+     <alpha></alpha>
+     <dashed></dashed>
+     <dash_length></dash_length>
+
+     <approx_count></approx_count>
+     <fill_color></fill_color>
+     <fill_alpha></fill_alpha>
+    </y_left>
+    <y_right>
+     <enabled></enabled>
+     <color></color>
+     <alpha></alpha>
+     <dashed></dashed>
+
+     <dash_length></dash_length>
+     <approx_count></approx_count>
+     <fill_color></fill_color>
+     <fill_alpha></fill_alpha>
+    </y_right>
+   </grid>
+   <values>
+    <x>
+     <enabled>true</enabled>
+
+     <text_color></text_color>
+     <text_size></text_size>
+     <bg_color></bg_color>
+     <bg_alpha></bg_alpha>
+    </x>
+    <y_left>
+     <enabled></enabled>
+     <min></min>
+     <max></max>
+
+     <strict_min_max></strict_min_max>
+     <integers_only></integers_only>
+     <text_color></text_color>
+     <text_size></text_size>
+     <bg_color></bg_color>
+     <bg_alpha></bg_alpha>
+     <unit></unit>
+     <unit_position></unit_position>
+     <digits_after_decimal>
+
+      <data></data>
+      <percents></percents>
+     </digits_after_decimal>
+     <duration></duration>
+    </y_left>
+    <y_right>
+     <enabled></enabled>
+     <min></min>
+     <max></max>
+
+     <strict_min_max></strict_min_max>
+     <integers_only></integers_only>
+     <text_color></text_color>
+     <text_size></text_size>
+     <bg_color></bg_color>
+     <bg_alpha></bg_alpha>
+     <unit></unit>
+     <unit_position></unit_position>
+     <digits_after_decimal>
+
+      <data></data>
+      <percents></percents>
+     </digits_after_decimal>
+     <duration></duration>
+    </y_right>
+   </values>
+   <legend>
+    <enabled></enabled>
+    <text_size></text_size>
+
+    <text_color></text_color>
+    <value_color></value_color>
+    <positive_color></positive_color>
+    <negative_color></negative_color>
+    <show_date>true</show_date>
+    <hide_date_on_period></hide_date_on_period>
+    <key_size></key_size>
+    <key_type></key_type>
+
+    <graph_on_off></graph_on_off>
+    <reverse_order></reverse_order>
+    <fade_others_to></fade_others_to>
+    <show_balloon></show_balloon>
+   </legend>
+   <comparing>
+    <recalculate></recalculate>
+    <recalculate_from_start></recalculate_from_start>
+    <base_date></base_date>
+
+    <width></width>
+    <dashed></dashed>
+    <use_graph_color></use_graph_color>
+    <alpha></alpha>
+    <smoothed></smoothed>
+   </comparing>
+   <events>
+    <show_balloon></show_balloon>
+    <use_hand_cursor>true</use_hand_cursor>
+
+    <url_target></url_target>
+    <bullet></bullet>
+    <color></color>
+    <color_hover></color_hover>
+    <border_color></border_color>
+    <border_alpha></border_alpha>
+    <text_color></text_color>
+    <size></size>
+    <hide_period></hide_period>
+
+   </events>
+   <column_width></column_width>
+   <graphs>
+    <graph gid="0">
+     <axis></axis>
+     <type>line</type>
+     <connect></connect>
+     <data_sources>
+
+      <close>close</close>
+     </data_sources>
+     <period_value></period_value>
+     <compare_source></compare_source>
+     <title></title>
+     <color></color>
+     <cursor_color></cursor_color>
+     <cursor_alpha></cursor_alpha>
+
+     <positive_color></positive_color>
+     <negative_color></negative_color>
+     <width></width>
+     <alpha></alpha>
+     <fill_alpha></fill_alpha>
+     <dashed></dashed>
+     <corner_radius></corner_radius>
+     <bullet></bullet>
+     <bullet_size></bullet_size>
+
+     <bullet_color></bullet_color>
+     <bullet_alpha></bullet_alpha>
+     <column_width></column_width>
+     <smoothed></smoothed>
+     <stack_to></stack_to>
+     <hidden></hidden>
+     <min_max></min_max>
+     <legend>
+      <date key="false" title="false">
+
+<![CDATA[{close}]]>
+      </date>
+      <period key="false" title="false">
+<![CDATA[{low} - {high}]]>
+      </period>
+      <date_comparing key="false" title="false">
+<![CDATA[]]>
+      </date_comparing>
+      <period_comparing key="false" title="false">
+<![CDATA[]]>
+      </period_comparing>
+
+      <comparing_only></comparing_only>
+      <digits_after_decimal>
+       <data></data>
+       <percents></percents>
+      </digits_after_decimal>
+     </legend>
+    </graph>
+   </graphs>
+  </chart>
+
+ </charts>
+ <date_formats>
+  <hour_format></hour_format>
+  <x_axis>
+   <seconds></seconds>
+   <minutes></minutes>
+   <hours></hours>
+   <days>month DD</days>
+
+   <months></months>
+   <years></years>
+  </x_axis>
+  <legend>
+   <milliseconds></milliseconds>
+   <seconds>month DD, hh:mm</seconds>
+   <minutes></minutes>
+   <hours></hours>
+
+   <days>month DD, YYYY</days>
+   <weeks></weeks>
+   <months></months>
+   <years></years>
+  </legend>
+  <events></events>
+ </date_formats>
+ <data_set_selector>
+
+  <enabled>false</enabled>
+  <position></position>
+  <width></width>
+  <text_size></text_size>
+  <text_color></text_color>
+  <max_comparing_count></max_comparing_count>
+  <main_drop_down_title></main_drop_down_title>
+  <compare_list_box_title>Compare to:</compare_list_box_title>
+
+  <drop_down>
+   <bg_color></bg_color>
+   <bg_color_selected></bg_color_selected>
+   <bg_color_hover></bg_color_hover>
+   <text_size></text_size>
+   <text_color></text_color>
+   <text_color_selected></text_color_selected>
+   <border_color></border_color>
+   <border_width></border_width>
+
+   <scroller_color></scroller_color>
+   <scroller_bg_color></scroller_bg_color>
+   <arrow_color></arrow_color>
+   <corner_radius></corner_radius>
+  </drop_down>
+ </data_set_selector>
+ <period_selector>
+  <enabled></enabled>
+  <date_format></date_format>
+
+  <custom_period_enabled>false</custom_period_enabled>
+  <position>bottom</position>
+  <text_size></text_size>
+  <text_color></text_color>
+  <button>
+   <bg_color></bg_color>
+   <bg_alpha></bg_alpha>
+   <bg_color_hover></bg_color_hover>
+
+   <bg_color_selected></bg_color_selected>
+   <text_size></text_size>
+   <text_color></text_color>
+   <text_color_hover></text_color_hover>
+   <text_color_selected></text_color_selected>
+   <border_color></border_color>
+   <border_color_hover></border_color_hover>
+   <border_color_selected></border_color_selected>
+   <border_width></border_width>
+
+   <corner_radius></corner_radius>
+  </button>
+  <input>
+   <bg_color></bg_color>
+   <text_size></text_size>
+   <text_color></text_color>
+   <border_color></border_color>
+   <border_width></border_width>
+   <corner_radius></corner_radius>
+
+  </input>
+  <periods>
+   <period type="DD" count="1">24h</period>
+   <period selected="true" type="DD" count="7">7d</period>
+   <period type="MAX">all</period>
+  </periods>
+  <zoom_to_end></zoom_to_end>
+
+  <periods_title></periods_title>
+  <custom_period_title>Custom period:</custom_period_title>
+  <from></from>
+  <to></to>
+ </period_selector>
+ <header>
+  <enabled>false</enabled>
+  <text>
+
+<![CDATA[<b>{title}</b>]]>
+  </text>
+  <margins></margins>
+  <text_size>13</text_size>
+  <text_color></text_color>
+  <bg_color></bg_color>
+  <bg_alpha></bg_alpha>
+  <border_alpha></border_alpha>
+  <border_color></border_color>
+
+  <border_width></border_width>
+  <corner_radius></corner_radius>
+ </header>
+ <balloon>
+  <bg_color></bg_color>
+  <bg_alpha></bg_alpha>
+  <text_color></text_color>
+  <text_size></text_size>
+  <border_color></border_color>
+
+  <border_width></border_width>
+  <border_alpha></border_alpha>
+  <corner_radius></corner_radius>
+ </balloon>
+ <background>
+  <color></color>
+  <alpha></alpha>
+  <border_color></border_color>
+  <border_alpha></border_alpha>
+
+  <file></file>
+ </background>
+ <plot_area>
+  <margins></margins>
+  <bg_color></bg_color>
+  <bg_alpha></bg_alpha>
+  <border_alpha></border_alpha>
+  <border_color></border_color>
+  <border_width></border_width>
+
+  <corner_radius></corner_radius>
+ </plot_area>
+ <scroller>
+  <enabled>true</enabled>
+  <connect></connect>
+  <frequency></frequency>
+  <height></height>
+  <graph_data_source>close</graph_data_source>
+
+  <bg_color></bg_color>
+  <bg_alpha></bg_alpha>
+  <selected_color></selected_color>
+  <graph_type></graph_type>
+  <graph_color></graph_color>
+  <graph_alpha></graph_alpha>
+  <graph_width></graph_width>
+  <graph_fill_alpha></graph_fill_alpha>
+  <graph_selected_color></graph_selected_color>
+
+  <graph_selected_alpha></graph_selected_alpha>
+  <graph_selected_fill_alpha></graph_selected_fill_alpha>
+  <graph_selected_fill_color></graph_selected_fill_color>
+  <resize_button_style></resize_button_style>
+  <resize_button_color></resize_button_color>
+  <resize_pointer_color></resize_pointer_color>
+  <update_on_release_only></update_on_release_only>
+  <grid>
+   <enabled></enabled>
+
+   <max_count></max_count>
+   <color></color>
+   <alpha></alpha>
+   <dashed></dashed>
+   <dash_lenght></dash_lenght>
+  </grid>
+  <values>
+   <enabled></enabled>
+   <text_color></text_color>
+
+   <text_size></text_size>
+  </values>
+  <playback>
+   <enabled></enabled>
+   <color></color>
+   <color_hover></color_hover>
+   <speed>1</speed>
+   <max_speed></max_speed>
+
+   <loop></loop>
+   <speed_indicator>
+    <enabled></enabled>
+    <color></color>
+    <bg_color></bg_color>
+   </speed_indicator>
+  </playback>
+ </scroller>
+ <context_menu>
+
+  <menu function_name="printChart" title="Print chart"></menu>
+  <default_items>
+   <zoom></zoom>
+   <print></print>
+  </default_items>
+ </context_menu>
+ <export_as_image>
+  <file></file>
+  <target></target>
+
+  <color></color>
+  <alpha></alpha>
+  <text_color></text_color>
+  <text_size></text_size>
+ </export_as_image>
+ <strings>
+  <processing_data></processing_data>
+  <loading_data></loading_data>
+  <wrong_date_format></wrong_date_format>
+
+  <export_as_image></export_as_image>
+  <collecting_data></collecting_data>
+  <no_data></no_data>
+  <duration_units>
+   <ss></ss>
+   <mm></mm>
+   <hh></hh>
+   <DD></DD>
+  </duration_units>
+
+  <months>
+   <jan>Jan</jan>
+   <feb>Feb</feb>
+   <mar>Mar</mar>
+   <apr>Apr</apr>
+   <may>May</may>
+
+   <jun>Jun</jun>
+   <jul>Jul</jul>
+   <aug>Aug</aug>
+   <sep>Sep</sep>
+   <oct>Oct</oct>
+   <nov>Nov</nov>
+
+   <dec>Dec</dec>
+  </months>
+  <weekdays>
+   <sun>Sun</sun>
+   <mon>Mon</mon>
+   <tue>Tue</tue>
+   <wed>Wed</wed>
+
+   <thu>Thu</thu>
+   <fri>Fri</fri>
+   <sat>Sat</sat>
+  </weekdays>
+ </strings>
+ <error_messages>
+  <enabled></enabled>
+
+  <color></color>
+  <alpha></alpha>
+  <text_color></text_color>
+  <text_size></text_size>
+ </error_messages>
+</settings>
+

@@ -45,6 +45,12 @@ class Server(db.Model):
     notifywithsms = db.BooleanProperty("SMS notifications",default=False)
     uptime = db.StringProperty("Uptime")
     
+class EC2Account(db.Model):
+    accountname = db.StringProperty("Account Name", multiline=False)
+    ec2apikey = db.StringProperty("EC2 API Key", multiline=False)
+    ec2secretkey = db.StringProperty("EC2 Secret Key", multiline=False)
+    accountisvalid = db.BooleanProperty("Is EC2 account valid?", default=False)
+    
 class AdminOptions(db.Model):
     twitteruser = db.StringProperty("Twitter Username", multiline=False)
     twitterpass = db.StringProperty("Twitter Passowrd", multiline=False)

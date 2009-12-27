@@ -108,5 +108,21 @@ Edit administrative options
 </form>
 </fieldset>
 </div></div>
+<fieldset >
+<legend>
+EC2 Credentials
+</legend>
+<div id="EC2apiline">Current EC2 API key: {{ prowlkey }}
+{% if adminoptions.prowlkeyisvalid %}
+<img id="prowlimg" src="/images/up.png"/>
+{% else %}
+<img id="prowlimg" src="/images/down.png"/>
+{% endif %}</div><div id="form">
+<form action="/admin/storeec2account" method="post">
+<div id="entry">EC2 Account Name: <textarea name="accountname" rows="1" cols="35"></textarea></div>
+<div id="entry">EC2 API Key: <textarea name="ec2apikey" rows="1" cols="35"></textarea></div>
+<div id="entry">EC2 Secret Key: <textarea name="ec2secretkey" rows="1" cols="35"></textarea></div>
+<div id="button"><input type="submit" value="Add EC2 Account"></div>
+</form></fieldset>
 
 {% endblock %}
