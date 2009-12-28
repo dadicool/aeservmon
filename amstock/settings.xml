@@ -64,6 +64,8 @@
     <columns>
      <column>date</column>
      <column>close</column>
+     <column>priv</column>
+     <column>basic</column>
     </columns>
     <data></data>
    </csv>
@@ -74,7 +76,7 @@
  <charts>
   <chart cid="0">
    <height>60</height>
-   <title>spot price</title>
+   <title>Spot Price vs Private Instance vs On-Demand</title>
    <bg_color></bg_color>
 
    <bg_alpha></bg_alpha>
@@ -122,7 +124,7 @@
      <bg_alpha></bg_alpha>
     </x>
     <y_left>
-     <enabled></enabled>
+     <enabled>true</enabled>
      <min></min>
      <max></max>
 
@@ -142,7 +144,7 @@
      <duration></duration>
     </y_left>
     <y_right>
-     <enabled></enabled>
+     <enabled>true</enabled>
      <min></min>
      <max></max>
 
@@ -257,8 +259,62 @@
 
       <comparing_only></comparing_only>
       <digits_after_decimal>
-       <data></data>
-       <percents></percents>
+       <data>3</data>
+       <percents>2</percents>
+      </digits_after_decimal>
+     </legend>
+    </graph>
+    <graph gid="1">
+     <axis>right</axis>
+     <type>line</type>
+     <connect></connect>
+     <data_sources>
+
+      <close>priv</close>
+     </data_sources>
+     <period_value></period_value>
+     <compare_source></compare_source>
+     <title></title>
+     <color>#2F4F2F</color>
+     <cursor_color></cursor_color>
+     <cursor_alpha></cursor_alpha>
+
+     <positive_color></positive_color>
+     <negative_color></negative_color>
+     <width></width>
+     <alpha></alpha>
+     <fill_alpha></fill_alpha>
+     <dashed></dashed>
+     <corner_radius></corner_radius>
+     <bullet></bullet>
+     <bullet_size></bullet_size>
+
+     <bullet_color></bullet_color>
+     <bullet_alpha></bullet_alpha>
+     <column_width></column_width>
+     <smoothed></smoothed>
+     <stack_to></stack_to>
+     <hidden></hidden>
+     <min_max></min_max>
+     <legend>
+      <date key="false" title="false">
+
+<![CDATA[{priv}]]>
+      </date>
+      <period key="false" title="false">
+<![CDATA[{low} - {high}]]>
+      </period>
+      <date_comparing key="false" title="false">
+<![CDATA[]]>
+      </date_comparing>
+      <period_comparing key="false" title="false">
+<![CDATA[]]>
+      </period_comparing>
+
+      <comparing_only></comparing_only>
+      <digits_after_decimal>
+       <data>3</data>
+       <percents>2</percents>
       </digits_after_decimal>
      </legend>
     </graph>

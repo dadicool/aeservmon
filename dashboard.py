@@ -46,12 +46,20 @@ from libcloud.providers import get_driver
 from google.appengine.api import urlfetch
 #from urllib import urlretrieve
 
-instances = []
-instances = {'us-east-1.linux.m1.small'	: 'us_east_small_linux_data', 
+class Dashboard(webapp.RequestHandler):
+	def __init__(self):	
+		self.instances2var = {'us-east-1.linux.m1.small'	: 'us_east_small_linux_data', 
 			'us-west-1.linux.m1.small'	: 'us_west_small_linux_data', 
 			'eu-west-1.linux.m1.small'	: 'eu_west_small_linux_data'}
 
-class Dashboard(webapp.RequestHandler):
+		self.instances_privcost = {'us-east-1.linux.m1.small'	: str(350/(.8*365*24)+0.03),
+			'us-west-1.linux.m1.small'	: str(350/(.8*365*24)+0.04),
+			'eu-west-1.linux.m1.small'	: str(350/(.8*365*24)+0.04)}
+
+		self.instances_basiccost = {'us-east-1.linux.m1.small'	: '0.085',
+			'us-west-1.linux.m1.small'	: '0.095',
+			'eu-west-1.linux.m1.small'	: '0.095'}
+
 	def get(self):
 #		adminoptions = AdminOptions.get_by_key_name('credentials')
 #		if adminoptions:  
@@ -65,7 +73,7 @@ class Dashboard(webapp.RequestHandler):
 #		serverlist = db.GqlQuery("SELECT * FROM Server")
 #		user = users.get_current_user()
 		input_data_settings = {}
-		for instance in instances.keys():
+		for instance in self.instances2var.keys():
 			url = "http://www.cloudexchange.org/data/"+instance+".csv"
 			logging.info("fetching from URL: %s" % url)
 			try:
@@ -76,13 +84,13 @@ class Dashboard(webapp.RequestHandler):
 			if result.status_code == 200:
 				content = result.content
 				logging.info("content : %s" % content)
-				input_data_settings[instance] = r"<settings><data_sets><data_set did='0'><csv><data>%s</data></csv></data_set></data_sets></settings>" % content.replace('\n','\\n')
+				input_data_settings[instance] = r"<settings><data_sets><data_set did='0'><csv><data>%s</data></csv></data_set></data_sets></settings>" % content.replace('\n',','+self.instances_privcost[instance]+','+self.instances_basiccost[instance]+'\\n')
 				logging.info("input_data_settings: %s" % input_data_settings[instance])
 			else:
 				input_data_settings[instance] = r"<settings><data_sets><data_set did='0'><csv><data>2009-11-30 21:21:21,0.029\n2009-12-01 05:12:36,0.029\n2009-12-01 05:12:37,0.03\n2009-12-01 09:59:04,0.03</data></csv></data_set></data_sets></settings>"
 				logging.info("input_data_settings: %s" % input_data_settings[instance])
 		template_values = {}
-		for instance,variable in instances.iteritems():
+		for instance,variable in self.instances2var.iteritems():
 			template_values[variable] = input_data_settings[instance]
 #		template_values = {'eu_west_small_linux_data': input_data_settings['eu-west-1.linux.m1.small'],'us_west_small_linux_data': input_data_settings['us-west-1.linux.m1.small'],'us_east_small_linux_data': input_data_settings['us-east-1.linux.m1.small'],}
 		path = os.path.join(os.path.dirname(__file__), 'dashboard.html')
