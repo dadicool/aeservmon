@@ -46,7 +46,10 @@ from libcloud.providers import get_driver
 from google.appengine.api import urlfetch
 #from urllib import urlretrieve
 
-instances = ['us-east-1.linux.m1.small', 'us-west-1.linux.m1.small']
+instances = []
+instances = {'us-east-1.linux.m1.small'	: 'us_east_small_linux_data', 
+			'us-west-1.linux.m1.small'	: 'us_west_small_linux_data', 
+			'eu-west-1.linux.m1.small'	: 'eu_west_small_linux_data'}
 
 class Dashboard(webapp.RequestHandler):
 	def get(self):
@@ -61,17 +64,27 @@ class Dashboard(webapp.RequestHandler):
 #			prowlkey = "Change Me"
 #		serverlist = db.GqlQuery("SELECT * FROM Server")
 #		user = users.get_current_user()
-		for instance in instances:
+		input_data_settings = {}
+		for instance in instances.keys():
 			url = "http://www.cloudexchange.org/data/"+instance+".csv"
-			result = urlfetch.fetch(url)
-			if result.status_code == 201:
-				input_data_setting = '''<settings><data_sets><data_set did='0'><csv><data>"+result.content+"</data></csv></data_set></data_sets></settings>'''
-				logging.info("input_data_settings: %s" % input_data_setting)
+			logging.info("fetching from URL: %s" % url)
+			try:
+				result = urlfetch.fetch(url)
+				logging.info("return code : %s" % result.status_code)
+			except:
+				logging.info("got exception from urlfetch")
+			if result.status_code == 200:
+				content = result.content
+				logging.info("content : %s" % content)
+				input_data_settings[instance] = r"<settings><data_sets><data_set did='0'><csv><data>%s</data></csv></data_set></data_sets></settings>" % content.replace('\n','\\n')
+				logging.info("input_data_settings: %s" % input_data_settings[instance])
 			else:
-				input_data_setting = '''<settings><data_sets><data_set did='0'><csv><data>2009-11-30 21:21:21,0.029\\\n 2009-12-01 05:12:36,0.029\\\n2009-12-01 05:12:37,0.03</data></csv></data_set></data_sets></settings>'''
-				logging.info("input_data_settings: %s" % input_data_setting)
-		
-		template_values = {'input_data_setting': input_data_setting}
+				input_data_settings[instance] = r"<settings><data_sets><data_set did='0'><csv><data>2009-11-30 21:21:21,0.029\n2009-12-01 05:12:36,0.029\n2009-12-01 05:12:37,0.03\n2009-12-01 09:59:04,0.03</data></csv></data_set></data_sets></settings>"
+				logging.info("input_data_settings: %s" % input_data_settings[instance])
+		template_values = {}
+		for instance,variable in instances.iteritems():
+			template_values[variable] = input_data_settings[instance]
+#		template_values = {'eu_west_small_linux_data': input_data_settings['eu-west-1.linux.m1.small'],'us_west_small_linux_data': input_data_settings['us-west-1.linux.m1.small'],'us_east_small_linux_data': input_data_settings['us-east-1.linux.m1.small'],}
 		path = os.path.join(os.path.dirname(__file__), 'dashboard.html')
 		self.response.out.write(template.render(path, template_values))
         
