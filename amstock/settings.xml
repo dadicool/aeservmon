@@ -265,7 +265,7 @@
      </legend>
     </graph>
     <graph gid="1">
-     <axis>right</axis>
+     <axis></axis>
      <type>line</type>
      <connect></connect>
      <data_sources>
@@ -281,7 +281,7 @@
 
      <positive_color></positive_color>
      <negative_color></negative_color>
-     <width></width>
+     <width>3</width>
      <alpha></alpha>
      <fill_alpha></fill_alpha>
      <dashed></dashed>
@@ -296,27 +296,39 @@
      <stack_to></stack_to>
      <hidden></hidden>
      <min_max></min_max>
-     <legend>
-      <date key="false" title="false">
+    </graph>
+    <graph gid="2">
+     <axis></axis>
+     <type>line</type>
+     <connect></connect>
+     <data_sources>
 
-<![CDATA[{priv}]]>
-      </date>
-      <period key="false" title="false">
-<![CDATA[{low} - {high}]]>
-      </period>
-      <date_comparing key="false" title="false">
-<![CDATA[]]>
-      </date_comparing>
-      <period_comparing key="false" title="false">
-<![CDATA[]]>
-      </period_comparing>
+      <close>basic</close>
+     </data_sources>
+     <period_value></period_value>
+     <compare_source></compare_source>
+     <title></title>
+     <color>#871F78</color>
+     <cursor_color></cursor_color>
+     <cursor_alpha></cursor_alpha>
 
-      <comparing_only></comparing_only>
-      <digits_after_decimal>
-       <data>3</data>
-       <percents>2</percents>
-      </digits_after_decimal>
-     </legend>
+     <positive_color></positive_color>
+     <negative_color></negative_color>
+     <width>3</width>
+     <alpha></alpha>
+     <fill_alpha></fill_alpha>
+     <dashed></dashed>
+     <corner_radius></corner_radius>
+     <bullet></bullet>
+     <bullet_size></bullet_size>
+
+     <bullet_color></bullet_color>
+     <bullet_alpha></bullet_alpha>
+     <column_width></column_width>
+     <smoothed></smoothed>
+     <stack_to></stack_to>
+     <hidden></hidden>
+     <min_max></min_max>
     </graph>
    </graphs>
   </chart>

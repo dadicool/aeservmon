@@ -46,7 +46,36 @@ Logged in as:<br/>
 EC2 Dashboard
 {% endblock %}
 {% block pagearea %}
+<!--<h3>Google Vizu</h3>
+<script type="text/javascript" src="http://www.google.com/jsapi"></script>
+<div id="chart_div"></div>
+<script type="text/javascript">
+    google.load("visualization", "1", {packages:["areachart"]});
+    google.setOnLoadCallback(drawChart);
+    function drawChart() {
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Year');
+        data.addColumn('number', 'Sales');
+        data.addColumn('number', 'Expenses');
+        data.addRows(4);
+        data.setValue(0, 0, '2004');
+        data.setValue(0, 1, 1000);
+        data.setValue(0, 2, 400);
+        data.setValue(1, 0, '2005');
+        data.setValue(1, 1, 1170);
+        data.setValue(1, 2, 460);
+        data.setValue(2, 0, '2006');
+        data.setValue(2, 1, 660);
+        data.setValue(2, 2, 1120);
+        data.setValue(3, 0, '2007');
+        data.setValue(3, 1, 1030);
+        data.setValue(3, 2, 540);
 
+        var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
+    chart.draw(data, {width: 600, height: 400, legend: 'bottom', title: 'Company Performance'});
+    }
+</script>
+-->
 <h3>us-east-1 m1.small linux</h3>
 <script type="text/javascript" src="amstock/swfobject.js"></script>
 <div id="us-east_small_linux">You need to upgrade your Flash Player</div>
