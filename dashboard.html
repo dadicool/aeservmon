@@ -76,6 +76,7 @@ EC2 Dashboard
     }
 </script>
 -->
+{% if monitoroptions.us_east_small_linux_valid %}
 <h3>us-east-1 m1.small linux</h3>
 <script type="text/javascript" src="amstock/swfobject.js"></script>
 <div id="us-east_small_linux">You need to upgrade your Flash Player</div>
@@ -87,6 +88,8 @@ EC2 Dashboard
       	so.addVariable("additional_chart_settings", "{{ us_east_small_linux_data }}");
       	so.write("us-east_small_linux");
       </script>
+{% endif %}
+{% if monitoroptions.us_west_small_linux_valid %}
 <h3>us-west-1 m1.small linux</h3>
 <script type="text/javascript" src="amstock/swfobject.js"></script>
 <div id="us-west_small_linux">You need to upgrade your Flash Player</div>
@@ -98,6 +101,8 @@ EC2 Dashboard
       	so.addVariable("additional_chart_settings","{{ us_west_small_linux_data }}");
       	so.write("us-west_small_linux");
       </script>
+{% endif %}
+{% if monitoroptions.eu_east_small_linux_valid %}
 <h3>eu-east-1 m1.small linux</h3>
 <script type="text/javascript" src="amstock/swfobject.js"></script>
 <div id="eu-west_small_linux">You need to upgrade your Flash Player</div>
@@ -109,4 +114,5 @@ EC2 Dashboard
       	so.addVariable("additional_chart_settings","{{ eu_west_small_linux_data }}");
       	so.write("eu-west_small_linux");
       </script>
+{% endif %}
 {% endblock %}

@@ -46,10 +46,15 @@ class Server(db.Model):
     uptime = db.StringProperty("Uptime")
     
 class EC2Account(db.Model):
-    accountname = db.StringProperty("Account Name", multiline=False)
     ec2apikey = db.StringProperty("EC2 API Key", multiline=False)
     ec2secretkey = db.StringProperty("EC2 Secret Key", multiline=False)
     accountisvalid = db.BooleanProperty("Is EC2 account valid?", default=False)
+    
+class EC2PricingMonitor(db.Model):
+    privateinstanceutilization = db.IntegerProperty("Private Instance Utilization Rate", default=80)
+    us_east_small_linux_valid = db.BooleanProperty("Monitor US East Small Linux instance valid?", default=True)
+    us_west_small_linux_valid = db.BooleanProperty("Monitor US West Small Linux instance valid?", default=False)
+    eu_west_small_linux_valid = db.BooleanProperty("Monitor EU West Small Linux instance valid?", default=False)
     
 class AdminOptions(db.Model):
     twitteruser = db.StringProperty("Twitter Username", multiline=False)
@@ -58,3 +63,4 @@ class AdminOptions(db.Model):
     mobilesmsnumber = db.StringProperty("Mobile SMS number", multiline=False)
     prowlkey = db.StringProperty("Prowl API Key", multiline=False)
     prowlkeyisvalid = db.BooleanProperty("Prowl key status", default=False)
+    accountname = db.StringProperty("Account Name", multiline=False, default="Not Defined")

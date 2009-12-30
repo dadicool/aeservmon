@@ -112,12 +112,8 @@ Edit administrative options
 <legend>
 EC2 Credentials
 </legend>
-<div id="EC2apiline">Current EC2 API key: {{ prowlkey }}
-{% if adminoptions.prowlkeyisvalid %}
-<img id="prowlimg" src="/images/up.png"/>
-{% else %}
-<img id="prowlimg" src="/images/down.png"/>
-{% endif %}</div><div id="form">
+<div id="EC2apiline">Current EC2 API key: {{ adminoptions.accountname }}
+</div><div id="form">
 <form action="/admin/storeec2account" method="post">
 <div id="entry">EC2 Account Name: <textarea name="accountname" rows="1" cols="35"></textarea></div>
 <div id="entry">EC2 API Key: <textarea name="ec2apikey" rows="1" cols="35"></textarea></div>
@@ -125,4 +121,28 @@ EC2 Credentials
 <div id="button"><input type="submit" value="Add EC2 Account"></div>
 </form></fieldset>
 
+<fieldset >
+<legend>
+EC2 Monitoring
+</legend>
+<div id="form">
+<form action="/admin/storeec2monitor" method="post">
+<div id="entry">Priv. Instance Utilization: <textarea name="utilization" rows="1" cols="35">{{ monitoroptions.privateinstanceutilization }}</textarea></div>
+<div id="entry"><input type="checkbox" name="us_east_small_linux_valid" rows="1" cols="2"
+{% if monitoroptions.us_east_small_linux_valid %}
+checked=""
+{% endif%}
+/>US East Small Linux is {{ monitoroptions.us_east_small_linux_valid }}</div>
+<div id="entry"><input type="checkbox" name="us_west_small_linux_valid" rows="1" cols="2"
+{% if monitoroptions.us_west_small_linux_valid %}
+checked="{{ monitoroptions.us_west_small_linux_valid }}"
+{% endif %}
+/> US West Small Linux is {{ monitoroptions.us_west_small_linux_valid }}</div>
+<div id="entry"><input type="checkbox" name="eu_west_small_linux_valid" rows="1" cols="2"
+{% if monitoroptions.eu_west_small_linux_valid %}
+checked=''
+{% endif %}
+/> EU West Small Linux is {{ monitoroptions.eu_west_small_linux_valid }}</div>
+<div id="button"><input type="submit" value="Update Options"></div>
+</form></fieldset>
 {% endblock %}

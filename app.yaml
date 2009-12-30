@@ -40,6 +40,10 @@ handlers:
   script: admin.py
   login: admin
   
+- url: /admin/storeec2monitor
+  script: admin.py
+  login: admin
+  
 - url: /admin/deleteserver
   script: admin.py
   login: admin

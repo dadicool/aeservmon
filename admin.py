@@ -29,7 +29,7 @@
 import httplib
 import cgi
 import wsgiref.handlers
-from models import Server, AdminOptions, EC2Account
+from models import Server, AdminOptions, EC2Account, EC2PricingMonitor
 import os
 from google.appengine.ext.webapp import template
 from google.appengine.ext import webapp
@@ -38,6 +38,7 @@ from google.appengine.ext.webapp.util import run_wsgi_app
 from google.appengine.ext import db
 from google.appengine.ext.db import Key
 import time
+import sys
 import prowlpy
 import datetime
 import logging
@@ -52,13 +53,16 @@ class Admin(webapp.RequestHandler):
 			twitterpass = adminoptions.twitterpass
 			twitteruser = adminoptions.twitteruser
 			prowlkey = adminoptions.prowlkey
+			monitoroptions = EC2PricingMonitor.get_by_key_name(adminoptions.accountname)
+			logging.info("accountname = %s" % adminoptions.accountname)
 		else:
 			twitterpass = "Change Me"
 			twitteruser = "Change Me"
 			prowlkey = "Change Me"
+			monitoroptions = EC2PricingMonitor();
 		serverlist = db.GqlQuery("SELECT * FROM Server")
 		user = users.get_current_user()
-		template_values = {'user': user, 'twitteruser': twitteruser, 'twitterpass': twitterpass, 'serverlist': serverlist, 'prowlkey': prowlkey, 'adminoptions': adminoptions,}
+		template_values = {'user': user, 'twitteruser': twitteruser, 'twitterpass': twitterpass, 'serverlist': serverlist, 'prowlkey': prowlkey, 'adminoptions': adminoptions,'monitoroptions': monitoroptions}
 		path = os.path.join(os.path.dirname(__file__), 'admin.html')
 		self.response.out.write(template.render(path, template_values))
         
@@ -88,22 +92,48 @@ class StoreServer(webapp.RequestHandler):
 
 class StoreEC2Account(webapp.RequestHandler):
 	def post(self):	
+		adminoptions = AdminOptions(key_name="credentials")
 		logging.info('Post for Account %s' % self.request.get('accountname'))
 		if self.request.get('accountname'):
 			account = EC2Account(key_name=self.request.get('accountname'))
-			account.accountname = self.request.get('accountname')
+			adminoptions.accountname = self.request.get('accountname')
 			account.ec2apikey = self.request.get('ec2apikey')
 			account.ec2secretkey = self.request.get('ec2secretkey')
-			EC2 = get_driver(Provider.EC2)
-			driver = [ EC2(account.ec2apikey,account.ec2secretkey) ]
-			try:
-				nodes = driver.list_nodes()
-			except:
-				logging.info('Invalid EC2 credentials for Account : %s' % self.request.get('accountname'))
-				self.redirect('/admin')
-				return
+#			EC2 = get_driver(Provider.EC2)
+#			driver = [ EC2(account.ec2apikey,account.ec2secretkey) ]
+#			try:
+#				nodes = driver.list_nodes()
+#			except:
+#				logging.info('Invalid EC2 credentials for Account : %s with exception: %s' % (self.request.get('accountname'),sys.exc_type))
+#				self.redirect('/admin')
+#				return
 			account.put()
+			adminoptions.put()
 		
+		self.redirect('/admin')
+        
+class StoreEC2Monitor(webapp.RequestHandler):
+	def post(self):	
+		adminoptions = AdminOptions.get_by_key_name("credentials")
+		logging.info('Post for Account %s' % adminoptions.accountname)
+		account = EC2PricingMonitor(key_name=adminoptions.accountname)
+		account.privateinstanceutilization = int(self.request.get('utilization'))
+		logging.info("checkbox output %s" % self.request.get('us_east_small_linux_valid'))
+		if self.request.get('us_east_small_linux_valid') == "on":
+			account.us_east_small_linux_valid = True
+		else:
+			account.us_east_small_linux_valid = False
+
+		if self.request.get('us_west_small_linux_valid') == "on":
+			account.us_west_small_linux_valid = True
+		else:
+			account.us_west_small_linux_valid = False
+
+		if self.request.get('eu_west_small_linux_valid') == "on":
+			account.eu_west_small_linux_valid = True
+		else:
+			account.eu_west_small_linux_valid = False
+		account.put()
 		self.redirect('/admin')
         
 class DeleteServer(webapp.RequestHandler):
@@ -129,7 +159,7 @@ class StoreAdminOptions(webapp.RequestHandler):
         
         
 def main():
-	application = webapp.WSGIApplication([('/admin/storeserver', StoreServer),('/admin/storeec2account', StoreEC2Account),('/admin/deleteserver', DeleteServer),('/admin/storeadminoptions', StoreAdminOptions),('/admin', Admin)],debug=True)
+	application = webapp.WSGIApplication([('/admin/storeserver', StoreServer),('/admin/storeec2monitor', StoreEC2Monitor),('/admin/storeec2account', StoreEC2Account),('/admin/deleteserver', DeleteServer),('/admin/storeadminoptions', StoreAdminOptions),('/admin', Admin)],debug=True)
 	wsgiref.handlers.CGIHandler().run(application)
 
 
