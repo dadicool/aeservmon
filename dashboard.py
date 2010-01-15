@@ -62,33 +62,39 @@ class Dashboard(webapp.RequestHandler):
 
 	def get(self):
 		adminoptions    = AdminOptions.get_by_key_name('credentials')
-		monitoroptions  = EC2PricingMonitor.get_by_key_name(adminoptions.accountname)
-		serverlist = db.GqlQuery("SELECT * FROM Server")
-		user = users.get_current_user()
-		input_data_settings = {}
-		for instance in self.instances2var.keys():
-			url = "http://www.cloudexchange.org/data/"+instance+".csv"
-			logging.info("fetching from URL: %s" % url)
-			try:
-				result = urlfetch.fetch(url)
-				logging.info("return code : %s" % result.status_code)
-			except:
-				logging.info("got exception from urlfetch")
-			if result.status_code == 200:
-				content = result.content
-				logging.info("content : %s" % content)
-				input_data_settings[instance] = r"<settings><data_sets><data_set did='0'><csv><data>%s</data></csv></data_set></data_sets></settings>" % content.replace('\n',','+self.instances_privcost[instance]+','+self.instances_basiccost[instance]+'\\n')
-				logging.info("input_data_settings: %s" % input_data_settings[instance])
-			else:
-				input_data_settings[instance] = r"<settings><data_sets><data_set did='0'><csv><data>2009-11-30 21:21:21,0.029\n2009-12-01 05:12:36,0.029\n2009-12-01 05:12:37,0.03\n2009-12-01 09:59:04,0.03</data></csv></data_set></data_sets></settings>"
-				logging.info("input_data_settings: %s" % input_data_settings[instance])
-		template_values = {}
-		for instance,variable in self.instances2var.iteritems():
-			template_values[variable] = input_data_settings[instance]
-		template_values['monitoroptions'] = monitoroptions
-#		template_values = {'eu_west_small_linux_data': input_data_settings['eu-west-1.linux.m1.small'],'us_west_small_linux_data': input_data_settings['us-west-1.linux.m1.small'],'us_east_small_linux_data': input_data_settings['us-east-1.linux.m1.small'],}
-		path = os.path.join(os.path.dirname(__file__), 'dashboard.html')
-		self.response.out.write(template.render(path, template_values))
+		if adminoptions:
+			monitoroptions  = EC2PricingMonitor.get_by_key_name(adminoptions.accountname)
+			if monitoroptions:
+				serverlist = db.GqlQuery("SELECT * FROM Server")
+				user = users.get_current_user()
+				input_data_settings = {}
+				for instance in self.instances2var.keys():
+					url = "http://www.cloudexchange.org/data/"+instance+".csv"
+					logging.info("fetching from URL: %s" % url)
+					try:
+						result = urlfetch.fetch(url)
+						logging.info("return code : %s" % result.status_code)
+					except:
+						logging.info("got exception from urlfetch")
+					if result.status_code == 200:
+						content = result.content
+						logging.info("content : %s" % content)
+						input_data_settings[instance] = r"<settings><data_sets><data_set did='0'><csv><data>%s</data></csv></data_set></data_sets></settings>" % content.replace('\n',','+self.instances_privcost[instance]+','+self.instances_basiccost[instance]+'\\n')
+						logging.info("input_data_settings: %s" % input_data_settings[instance])
+					else:
+						input_data_settings[instance] = r"<settings><data_sets><data_set did='0'><csv><data>2009-11-30 21:21:21,0.029\n2009-12-01 05:12:36,0.029\n2009-12-01 05:12:37,0.03\n2009-12-01 09:59:04,0.03</data></csv></data_set></data_sets></settings>"
+						logging.info("input_data_settings: %s" % input_data_settings[instance])
+				template_values = {}
+				for instance,variable in self.instances2var.iteritems():
+					template_values[variable] = input_data_settings[instance]
+				template_values['monitoroptions'] = monitoroptions
+#				template_values = {'eu_west_small_linux_data': input_data_settings['eu-west-1.linux.m1.small'],'us_west_small_linux_data': input_data_settings['us-west-1.linux.m1.small'],'us_east_small_linux_data': input_data_settings['us-east-1.linux.m1.small'],}
+				path = os.path.join(os.path.dirname(__file__), 'dashboard.html')
+				self.response.out.write(template.render(path, template_values))
+			else :
+				self.redirect('/admin')
+		else :
+			self.redirect('/admin')
         
         
 def main():

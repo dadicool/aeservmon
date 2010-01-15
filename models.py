@@ -57,10 +57,11 @@ class EC2PricingMonitor(db.Model):
     eu_west_small_linux_valid = db.BooleanProperty("Monitor EU West Small Linux instance valid?", default=False)
     
 class AdminOptions(db.Model):
-    twitteruser = db.StringProperty("Twitter Username", multiline=False)
-    twitterpass = db.StringProperty("Twitter Passowrd", multiline=False)
-    facebookconnect = db.StringProperty("Facebook connect", multiline=False)
-    mobilesmsnumber = db.StringProperty("Mobile SMS number", multiline=False)
-    prowlkey = db.StringProperty("Prowl API Key", multiline=False)
-    prowlkeyisvalid = db.BooleanProperty("Prowl key status", default=False)
-    accountname = db.StringProperty("Account Name", multiline=False, default="Not Defined")
+	twitteruser = db.StringProperty("Twitter Username", multiline=False)
+	twitterpass = db.StringProperty("Twitter Passowrd", multiline=False)
+	facebookconnect = db.StringProperty("Facebook connect", multiline=False)
+	mobilesmsnumber = db.StringProperty("Mobile SMS number", multiline=False)
+	prowlkey = db.StringProperty("Prowl API Key", multiline=False)
+	prowlkeyisvalid = db.BooleanProperty("Prowl key status", default=False)
+	accountname = db.StringProperty("Account Name", multiline=False, default="Not Defined")
+	debug = db.BooleanProperty("Debug Mode", default=True)

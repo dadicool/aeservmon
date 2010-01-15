@@ -76,7 +76,7 @@
  <charts>
   <chart cid="0">
    <height>60</height>
-   <title>Spot Price vs Private Instance vs On-Demand</title>
+<!--   <title>Spot Price vs Private Instance vs On-Demand</title>-->
    <bg_color></bg_color>
 
    <bg_alpha></bg_alpha>
@@ -165,22 +165,22 @@
     </y_right>
    </values>
    <legend>
-    <enabled></enabled>
+    <enabled>true</enabled>
     <text_size></text_size>
 
     <text_color></text_color>
     <value_color></value_color>
     <positive_color></positive_color>
     <negative_color></negative_color>
-    <show_date>true</show_date>
+    <show_date>show</show_date>
     <hide_date_on_period></hide_date_on_period>
     <key_size></key_size>
     <key_type></key_type>
 
-    <graph_on_off></graph_on_off>
+    <graph_on_off>true</graph_on_off>
     <reverse_order></reverse_order>
     <fade_others_to></fade_others_to>
-    <show_balloon></show_balloon>
+    <show_balloon>true</show_balloon>
    </legend>
    <comparing>
     <recalculate></recalculate>
@@ -189,7 +189,7 @@
 
     <width></width>
     <dashed></dashed>
-    <use_graph_color></use_graph_color>
+    <use_graph_color>true</use_graph_color>
     <alpha></alpha>
     <smoothed></smoothed>
    </comparing>
@@ -220,7 +220,7 @@
      </data_sources>
      <period_value></period_value>
      <compare_source></compare_source>
-     <title></title>
+     <title>Spot Instance Price</title>
      <color></color>
      <cursor_color></cursor_color>
      <cursor_alpha></cursor_alpha>
@@ -243,14 +243,14 @@
      <hidden></hidden>
      <min_max></min_max>
      <legend>
-      <date key="false" title="false">
+     <date key="true" title="true">
 
 <![CDATA[{close}]]>
       </date>
-      <period key="false" title="false">
+      <period key="true" title="true">
 <![CDATA[{low} - {high}]]>
       </period>
-      <date_comparing key="false" title="false">
+      <date_comparing key="true" title="true">
 <![CDATA[]]>
       </date_comparing>
       <period_comparing key="false" title="false">
@@ -262,7 +262,7 @@
        <data>3</data>
        <percents>2</percents>
       </digits_after_decimal>
-     </legend>
+    </legend>
     </graph>
     <graph gid="1">
      <axis></axis>
@@ -274,7 +274,7 @@
      </data_sources>
      <period_value></period_value>
      <compare_source></compare_source>
-     <title></title>
+     <title>Reserved Instance Price</title>
      <color>#2F4F2F</color>
      <cursor_color></cursor_color>
      <cursor_alpha></cursor_alpha>
@@ -296,6 +296,27 @@
      <stack_to></stack_to>
      <hidden></hidden>
      <min_max></min_max>
+     <legend>
+     <date key="true" title="true">
+
+<![CDATA[{close}]]>
+      </date>
+      <period key="true" title="true">
+<![CDATA[{high}]]>
+      </period>
+      <date_comparing key="true" title="true">
+<![CDATA[]]>
+      </date_comparing>
+      <period_comparing key="false" title="false">
+<![CDATA[]]>
+      </period_comparing>
+
+      <comparing_only></comparing_only>
+      <digits_after_decimal>
+       <data>3</data>
+       <percents>2</percents>
+      </digits_after_decimal>
+    </legend>
     </graph>
     <graph gid="2">
      <axis></axis>
@@ -307,7 +328,7 @@
      </data_sources>
      <period_value></period_value>
      <compare_source></compare_source>
-     <title></title>
+     <title>Standard Instance Price</title>
      <color>#871F78</color>
      <cursor_color></cursor_color>
      <cursor_alpha></cursor_alpha>
@@ -329,6 +350,27 @@
      <stack_to></stack_to>
      <hidden></hidden>
      <min_max></min_max>
+     <legend>
+     <date key="true" title="true">
+
+<![CDATA[{close}]]>
+      </date>
+      <period key="true" title="true">
+<![CDATA[{high}]]>
+      </period>
+      <date_comparing key="true" title="true">
+<![CDATA[]]>
+      </date_comparing>
+      <period_comparing key="false" title="false">
+<![CDATA[]]>
+      </period_comparing>
+
+      <comparing_only></comparing_only>
+      <digits_after_decimal>
+       <data>3</data>
+       <percents>2</percents>
+      </digits_after_decimal>
+    </legend>
     </graph>
    </graphs>
   </chart>
