@@ -29,18 +29,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <title>Cloud Broker Engine</title>
 <link rel="stylesheet" href="/files/style.css" type="text/css" media="screen" /></head>
 <body style="margin: 0; padding:0;">
-
-<script type="text/javascript">
-var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-</script>
-<script type="text/javascript">
-try {
-    var pageTracker = _gat._getTracker("UA-8894828-2");
-    pageTracker._trackPageview();
-} catch(err) {}
-</script>
-
 <div id="header">{% block header %}{% endblock %}</div><!---header--->
 <div id="wrapper">
 <div id="controlpanel">
@@ -62,4 +50,15 @@ Logged in as:<br/>
 <div id="pagearea">{% block pagearea %}{% endblock %}<!---pagearea---></div>
 </div><!---main panel--->
 </div><!---wrapper--->
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+    var pageTracker = _gat._getTracker("UA-8894828-2");
+    pageTracker._trackPageview();
+} catch(err) {}
+</script>
+
 </body></html>
