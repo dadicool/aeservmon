@@ -55,6 +55,9 @@ class EC2PricingMonitor(db.Model):
     us_east_small_linux_valid = db.BooleanProperty("Monitor US East Small Linux instance valid?", default=True)
     us_west_small_linux_valid = db.BooleanProperty("Monitor US West Small Linux instance valid?", default=False)
     eu_west_small_linux_valid = db.BooleanProperty("Monitor EU West Small Linux instance valid?", default=False)
+    us_east_large_linux_valid = db.BooleanProperty("Monitor US East Large Linux instance valid?", default=True)
+    us_west_large_linux_valid = db.BooleanProperty("Monitor US West Large Linux instance valid?", default=False)
+    eu_west_large_linux_valid = db.BooleanProperty("Monitor EU West Large Linux instance valid?", default=False)
     
 class AdminOptions(db.Model):
 	twitteruser = db.StringProperty("Twitter Username", multiline=False)

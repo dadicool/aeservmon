@@ -28,7 +28,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 {% extends 'core.html' %}
 
 {% block controlpanel %}
-<img style="display:inline;" src="/images/server.png"></img>
+<img style="display:inline;" src="/images/cloud.jpg"></img>
 <h1>Cloud Broker Monitor</h1>
 <div id="userdisplay">
 Logged in as:<br/>
@@ -43,7 +43,7 @@ Logged in as:<br/>
 {% endblock %}
 
 {% block breadcrumbs %}
-EC2 Dashboard
+<div id="breadcrumbs">EC2 Dashboard</div>
 {% endblock %}
 {% block pagearea %}
 <!--<h3>Google Vizu</h3>
@@ -76,8 +76,10 @@ EC2 Dashboard
     }
 </script>
 -->
+<div class="tabber">
+<div class="tabbertab" title="m1.small linux">
 {% if monitoroptions.us_east_small_linux_valid %}
-<h3>us-east-1 m1.small linux</h3>
+<b>us-east-1 m1.small linux</b>
 <script type="text/javascript" src="amstock/swfobject.js"></script>
 <div id="us-east_small_linux">You need to upgrade your Flash Player</div>
 <script type="text/javascript">
@@ -90,7 +92,7 @@ EC2 Dashboard
       </script>
 {% endif %}
 {% if monitoroptions.us_west_small_linux_valid %}
-<h3>us-west-1 m1.small linux</h3>
+<b>us-west-1 m1.small linux</b>
 <script type="text/javascript" src="amstock/swfobject.js"></script>
 <div id="us-west_small_linux">You need to upgrade your Flash Player</div>
 <script type="text/javascript">
@@ -103,7 +105,7 @@ EC2 Dashboard
       </script>
 {% endif %}
 {% if monitoroptions.eu_west_small_linux_valid %}
-<h3>eu-west-1 m1.small linux</h3>
+<b>eu-west-1 m1.small linux</b>
 <script type="text/javascript" src="amstock/swfobject.js"></script>
 <div id="eu-west_small_linux">You need to upgrade your Flash Player</div>
 <script type="text/javascript">
@@ -115,4 +117,62 @@ EC2 Dashboard
       	so.write("eu-west_small_linux");
       </script>
 {% endif %}
+</div>
+<div class="tabbertab" title="m1.large linux">
+{% if monitoroptions.us_east_large_linux_valid %}
+<b>us-east-1 m1.large linux</b>
+<script type="text/javascript" src="amstock/swfobject.js"></script>
+<div id="us-east_large_linux">You need to upgrade your Flash Player</div>
+<script type="text/javascript">
+      	var so = new SWFObject("/amstock/amstock.swf", "amstock", "800", "400", "8", "#FFFFFF");
+      	so.addVariable("path", "/data/");
+      	so.addVariable("settings_file", encodeURIComponent("/amstock/settings.xml"));
+      	so.addVariable("preloader_color", "#999999");
+      	so.addVariable("additional_chart_settings", "{{ us_east_large_linux_data }}");
+      	so.write("us-east_large_linux");
+      </script>
+{% endif %}
+{% if monitoroptions.us_west_large_linux_valid %}
+<b>us-west-1 m1.large linux</b>
+<script type="text/javascript" src="amstock/swfobject.js"></script>
+<div id="us-west_large_linux">You need to upgrade your Flash Player</div>
+<script type="text/javascript">
+      	var so = new SWFObject("/amstock/amstock.swf", "amstock", "800", "400", "8", "#FFFFFF");
+      	so.addVariable("path", "/data/");
+      	so.addVariable("settings_file", encodeURIComponent("/amstock/settings.xml"));
+      	so.addVariable("preloader_color", "#999999");
+      	so.addVariable("additional_chart_settings","{{ us_west_large_linux_data }}");
+      	so.write("us-west_large_linux");
+      </script>
+{% endif %}
+{% if monitoroptions.eu_west_large_linux_valid %}
+<b>eu-west-1 m1.large linux</b>
+<script type="text/javascript" src="amstock/swfobject.js"></script>
+<div id="eu-west_large_linux">You need to upgrade your Flash Player</div>
+<script type="text/javascript">
+      	var so = new SWFObject("/amstock/amstock.swf", "amstock", "800", "400", "8", "#FFFFFF");
+      	so.addVariable("path", "/data/");
+      	so.addVariable("settings_file", encodeURIComponent("/amstock/settings.xml"));
+      	so.addVariable("preloader_color", "#999999");
+      	so.addVariable("additional_chart_settings","{{ eu_west_large_linux_data }}");
+      	so.write("eu-west_large_linux");
+      </script>
+{% endif %}
+</div>
+</div>
+</div>
+
+<script type="text/javascript" src="files/tabber.js">
+</script>
+<link rel="stylesheet" href="files/example.css" TYPE="text/css" MEDIA="screen">
+
+<script type="text/javascript">
+
+/* Optional: Temporarily hide the "tabber" class so it does not "flash"
+   on the page as plain HTML. After tabber runs, the class is changed
+   to "tabberlive" and it will appear. */
+
+document.write('<style type="text/css">.tabber{display:none;}<\/style>');
+</script>
+
 {% endblock %}

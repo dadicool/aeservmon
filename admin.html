@@ -143,6 +143,21 @@ checked="{{ monitoroptions.us_west_small_linux_valid }}"
 checked=''
 {% endif %}
 /> EU West Small Linux is {{ monitoroptions.eu_west_small_linux_valid }}</div>
+<div id="entry"><input type="checkbox" name="us_east_large_linux_valid" rows="1" cols="2"
+{% if monitoroptions.us_east_large_linux_valid %}
+checked=""
+{% endif%}
+/>US East Large Linux is {{ monitoroptions.us_east_large_linux_valid }}</div>
+<div id="entry"><input type="checkbox" name="us_west_large_linux_valid" rows="1" cols="2"
+{% if monitoroptions.us_west_large_linux_valid %}
+checked="{{ monitoroptions.us_west_large_linux_valid }}"
+{% endif %}
+/> US West Large Linux is {{ monitoroptions.us_west_large_linux_valid }}</div>
+<div id="entry"><input type="checkbox" name="eu_west_large_linux_valid" rows="1" cols="2"
+{% if monitoroptions.eu_west_large_linux_valid %}
+checked=''
+{% endif %}
+/> EU West Large Linux is {{ monitoroptions.eu_west_large_linux_valid }}</div>
 <div id="button"><input type="submit" value="Update Options"></div>
 </form></fieldset>
 {% endblock %}

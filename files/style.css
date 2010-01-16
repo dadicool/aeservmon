@@ -140,14 +140,14 @@ padding-top:12px;
 width:200px;
 height:100%;
 float:left;
-background:#1d1c1c;
+background:#dde;
 }
 
 #controlpanel h1 {
     margin:5px 0 0 0;
     padding:0;
     font-size:14px;
-    color:#fff;
+    color:#448;
     text-align:center;
 }
 
@@ -172,11 +172,11 @@ margin:4px 0 0 0;
 #linklist ul li a {
 font-weight:bold;
 text-decoration:none;
-color:#fff;
+color:#448;
 }
 
 #userdisplay {
-color:#fff;
+color:#448;
 position:absolute;
 bottom:0px;
 left:18px;
@@ -189,8 +189,8 @@ margin-left:200px;
 
 #breadcrumbs {
     padding:4px;
-    background:#1d1c1c;
-    color:#fff;
+    background:#dde;
+    color:#448;
 }
 
 fieldset {

@@ -48,24 +48,38 @@ from google.appengine.api import urlfetch
 class Dashboard(webapp.RequestHandler):
 	def __init__(self):	
 		self.utilization_rate = .9
-		self.instances2var = {'us-east-1.linux.m1.small'	: 'us_east_small_linux_data', 
+		self.instances2var = {
+            'us-east-1.linux.m1.small'	: 'us_east_small_linux_data', 
 			'us-west-1.linux.m1.small'	: 'us_west_small_linux_data', 
-			'eu-west-1.linux.m1.small'	: 'eu_west_small_linux_data'}
+			'eu-west-1.linux.m1.small'	: 'eu_west_small_linux_data',
+            'us-east-1.linux.m1.large'	: 'us_east_large_linux_data', 
+			'us-west-1.linux.m1.large'	: 'us_west_large_linux_data', 
+			'eu-west-1.linux.m1.large'	: 'eu_west_large_linux_data',
+            }
 
-		self.instances_privcost = {'us-east-1.linux.m1.small'	: str(350/(self.utilization_rate*365*24)+0.03),
+		self.instances_privcost = {
+            'us-east-1.linux.m1.small'	: str(350/(self.utilization_rate*365*24)+0.03),
 			'us-west-1.linux.m1.small'	: str(350/(self.utilization_rate*365*24)+0.04),
-			'eu-west-1.linux.m1.small'	: str(350/(self.utilization_rate*365*24)+0.04)}
+			'eu-west-1.linux.m1.small'	: str(350/(self.utilization_rate*365*24)+0.04),
+            'us-east-1.linux.m1.large'	: str(1400/(self.utilization_rate*365*24)+0.12),
+			'us-west-1.linux.m1.large'	: str(1400/(self.utilization_rate*365*24)+0.16),
+			'eu-west-1.linux.m1.large'	: str(1400/(self.utilization_rate*365*24)+0.16),
+            }
 
-		self.instances_basiccost = {'us-east-1.linux.m1.small'	: '0.085',
+		self.instances_basiccost = {
+            'us-east-1.linux.m1.small'	: '0.085',
 			'us-west-1.linux.m1.small'	: '0.095',
-			'eu-west-1.linux.m1.small'	: '0.095'}
+			'eu-west-1.linux.m1.small'	: '0.095',
+            'us-east-1.linux.m1.large'	: '0.34',
+			'us-west-1.linux.m1.large'	: '0.38',
+			'eu-west-1.linux.m1.large'	: '0.38',
+            }
 
 	def get(self):
 		adminoptions    = AdminOptions.get_by_key_name('credentials')
 		if adminoptions:
 			monitoroptions  = EC2PricingMonitor.get_by_key_name(adminoptions.accountname)
 			if monitoroptions:
-				serverlist = db.GqlQuery("SELECT * FROM Server")
 				user = users.get_current_user()
 				input_data_settings = {}
 				for instance in self.instances2var.keys():

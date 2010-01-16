@@ -133,6 +133,20 @@ class StoreEC2Monitor(webapp.RequestHandler):
 			account.eu_west_small_linux_valid = True
 		else:
 			account.eu_west_small_linux_valid = False
+		if self.request.get('us_east_large_linux_valid') == "on":
+			account.us_east_large_linux_valid = True
+		else:
+			account.us_east_large_linux_valid = False
+
+		if self.request.get('us_west_large_linux_valid') == "on":
+			account.us_west_large_linux_valid = True
+		else:
+			account.us_west_large_linux_valid = False
+
+		if self.request.get('eu_west_large_linux_valid') == "on":
+			account.eu_west_large_linux_valid = True
+		else:
+			account.eu_west_large_linux_valid = False
 		account.put()
 		self.redirect('/admin')
         
